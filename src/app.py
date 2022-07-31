@@ -22,6 +22,12 @@ def download_button_click():
         print("Error: Missing YT link")
 
 
+def settings_button_click():
+    settings_window = tk.Toplevel(root)
+    settings_window.title = "Settings"
+    settings_window.geometry = "200x200"
+
+
 # GUI start point
 root = tk.Tk()
 
@@ -52,6 +58,11 @@ download_btn = tk.Button(root,
                          command=lambda: download_button_click())
 download_btn_text.set("Download")
 download_btn.grid(column=1, row=3)
+
+# Settings button
+settings_button = tk.Button(root, text='Settings',
+                            command=lambda: settings_button_click())
+settings_button.grid(column=2, row=3)
 
 # Run the GUI main loop
 root.mainloop()
