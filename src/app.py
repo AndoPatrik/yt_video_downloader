@@ -1,7 +1,26 @@
-from distutils import text_file
 import tkinter as tk
+from pytube import YouTube
+from distutils import text_file
 from turtle import clear
 from PIL import Image, ImageTk
+
+# Functions
+
+
+def download(link):
+    yt = YouTube(link)
+    yd = yt.streams.get_highest_resolution()
+    yd.download()
+
+
+def download_button_click():
+    print(link_entry.get())
+    link = link_entry.get()
+    if link:
+        download(link)
+    else:
+        print("Error: Missing YT link")
+
 
 # GUI start point
 root = tk.Tk()
@@ -26,11 +45,13 @@ link_entry.grid(columnspan=3, column=0, row=1)
 instructions = tk.Label(root, text="Paste YouTube link and click on download.")
 instructions.grid(columnspan=3, column=0, row=2)
 
-# Download butotn
+# Download button
 download_btn_text = tk.StringVar()
-download_btn = tk.Button(root, textvariable=download_btn_text)
+download_btn = tk.Button(root,
+                         textvariable=download_btn_text,
+                         command=lambda: download_button_click())
 download_btn_text.set("Download")
 download_btn.grid(column=1, row=3)
 
-# End of GUI
+# Run the GUI main loop
 root.mainloop()
