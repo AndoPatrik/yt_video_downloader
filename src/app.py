@@ -1,31 +1,21 @@
 import tkinter as tk
-from pytube import YouTube
-from distutils import text_file
-from turtle import clear
+import settings_window
+import download
 from PIL import Image, ImageTk
 
-# Functions
-
-
-def download(link):
-    yt = YouTube(link)
-    yd = yt.streams.get_highest_resolution()
-    yd.download()
+# Event handlers
 
 
 def download_button_click():
-    print(link_entry.get())
     link = link_entry.get()
     if link:
-        download(link)
+        download.download(link)
     else:
         print("Error: Missing YT link")
 
 
 def settings_button_click():
-    settings_window = tk.Toplevel(root)
-    settings_window.title = "Settings"
-    settings_window.geometry = "200x200"
+    settings_window.display(root)
 
 
 # GUI start point
