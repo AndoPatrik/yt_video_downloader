@@ -1,6 +1,6 @@
-from tkinter.tix import COLUMN
 import customtkinter as ctk
 import download
+from tkinter.filedialog import askdirectory
 from PIL import Image, ImageTk
 
 # Event handlers
@@ -16,6 +16,12 @@ def download_button_click():
 
 def radiobutton_event():
     print("radiobutton toggled, current value:", settings_radio_var.get())
+
+
+def path_button_event():
+    filename = askdirectory()
+    download.output_path = filename
+    path_label_text.set("Save to: {0}".format(download.output_path))
 
 
 # General settings
@@ -54,16 +60,20 @@ settings_radiobutton_both.grid(column=2, row=1, padx=10)
 # YT Link input
 link_entry_text = ctk.StringVar()
 link_entry = ctk.CTkEntry(
-    root, textvariable=link_entry_text, width=300)
+    root, textvariable=link_entry_text, width=300, placeholder_text="Paste YT link here")
 link_entry.grid(columnspan=4, column=0, row=2, pady=20)
 
 # Path
+path_label_text = ctk.StringVar(
+    value="Save to: {0}".format(download.output_path))
 path_label = ctk.CTkLabel(
-    root, text="Save to: {0}".format(download.output_path))
+    root, textvariable=path_label_text)
 path_label.grid(columnspan=3, column=0, row=3)
 
-path_button = ctk.CTkButton(root, text='Path', width=50)
+path_button = ctk.CTkButton(
+    root, text='Browse', width=50, command=lambda: path_button_event())
 path_button.grid(column=0, row=4, columnspan=4)
+
 
 # Download button
 download_btn_text = ctk.StringVar()
@@ -71,7 +81,7 @@ download_btn = ctk.CTkButton(root,
                              textvariable=download_btn_text,
                              command=lambda: download_button_click())
 download_btn_text.set("Download")
-download_btn.grid(column=0, row=5, columnspan=4, pady=20)
+download_btn.grid(column=0, row=5, columnspan=4, pady=30)
 
 # Config elements
 settings_radiobutton_both.select()
