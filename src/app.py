@@ -57,10 +57,13 @@ link_entry = ctk.CTkEntry(
     root, textvariable=link_entry_text, width=300)
 link_entry.grid(columnspan=4, column=0, row=2, pady=20)
 
-# Insturctions
-instructions = ctk.CTkLabel(
-    root, text="Paste YouTube link and click on download.")
-instructions.grid(columnspan=4, column=0, row=3)
+# Path
+path_label = ctk.CTkLabel(
+    root, text="Save to: {0}".format(download.output_path))
+path_label.grid(columnspan=3, column=0, row=3)
+
+path_button = ctk.CTkButton(root, text='Path', width=50)
+path_button.grid(column=0, row=4, columnspan=4)
 
 # Download button
 download_btn_text = ctk.StringVar()
@@ -68,7 +71,7 @@ download_btn = ctk.CTkButton(root,
                              textvariable=download_btn_text,
                              command=lambda: download_button_click())
 download_btn_text.set("Download")
-download_btn.grid(column=0, row=4, columnspan=4, pady=20)
+download_btn.grid(column=0, row=5, columnspan=4, pady=20)
 
 # Config elements
 settings_radiobutton_both.select()
