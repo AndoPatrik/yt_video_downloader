@@ -32,13 +32,13 @@ logo = Image.open('../static/logo.png')
 logo = ImageTk.PhotoImage(logo)
 logo_label = ctk.CTkLabel(image=logo)
 logo_label.image = logo
-logo_label.grid(column=0, row=0, columnspan=3)
+logo_label.grid(column=0, row=0, columnspan=3, pady=20)
 
 # YT Link input
 link_entry_text = ctk.StringVar()
 link_entry = ctk.CTkEntry(
     root, textvariable=link_entry_text, width=300)
-link_entry.grid(columnspan=3, column=0, row=1)
+link_entry.grid(columnspan=3, column=0, row=1, pady=20)
 
 # Insturctions
 instructions = ctk.CTkLabel(
@@ -51,7 +51,7 @@ download_btn = ctk.CTkButton(root,
                              textvariable=download_btn_text,
                              command=lambda: download_button_click())
 download_btn_text.set("Download")
-download_btn.grid(column=0, row=3, columnspan=3)
+download_btn.grid(column=0, row=3, columnspan=3, pady=20)
 
 # Settings button
 settings_button = ctk.CTkButton(root, text='Settings',
