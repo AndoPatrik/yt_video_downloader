@@ -1,3 +1,4 @@
+import tkinter
 import customtkinter as ctk
 import download
 from tkinter.filedialog import askdirectory
@@ -16,6 +17,14 @@ def download_button_click():
 
 def radiobutton_event():
     print("radiobutton toggled, current value:", settings_radio_var.get())
+    choice = settings_radio_var.get()
+
+    if choice == "audio":
+        download.only_audio = True
+        download.only_video = False
+    elif choice == "video":
+        download.only_audio = False
+        download.only_video = True
 
 
 def path_button_event():
@@ -44,14 +53,14 @@ logo_label.image = logo
 logo_label.grid(column=0, row=0, columnspan=4, pady=20)
 
 # Settings radio buttons
-settings_radio_var = ctk.IntVar()
+settings_radio_var = ctk.StringVar()
 
 settings_radiobutton_audio = ctk.CTkRadioButton(master=root, text="Only audio",
-                                                command=radiobutton_event, variable=settings_radio_var, value=1)
+                                                command=radiobutton_event, variable=settings_radio_var, value="audio")
 settings_radiobutton_video = ctk.CTkRadioButton(master=root, text="Only video",
-                                                command=radiobutton_event, variable=settings_radio_var, value=2)
+                                                command=radiobutton_event, variable=settings_radio_var, value="video")
 settings_radiobutton_both = ctk.CTkRadioButton(master=root, text="Video and audio",
-                                               command=radiobutton_event, variable=settings_radio_var, value=3)
+                                               command=radiobutton_event, variable=settings_radio_var, value="both")
 
 settings_radiobutton_audio.grid(column=0, row=1, padx=10)
 settings_radiobutton_video.grid(column=1, row=1, padx=10)
@@ -85,6 +94,6 @@ download_btn.grid(column=0, row=5, columnspan=4, pady=30)
 
 # Config elements
 settings_radiobutton_both.select()
-
+settings_radiobutton_video.state = tkinter.DISABLED
 # Run the GUI main loop
 root.mainloop()
