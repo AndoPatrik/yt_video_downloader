@@ -1,5 +1,4 @@
 import customtkinter as ctk
-import settings_window
 import download
 from PIL import Image, ImageTk
 
@@ -12,10 +11,6 @@ def download_button_click():
         download.download(link)
     else:
         print("Error: Missing YT link")
-
-
-def settings_button_click():
-    settings_window.display(root)
 
 
 # General settings
@@ -52,11 +47,6 @@ download_btn = ctk.CTkButton(root,
                              command=lambda: download_button_click())
 download_btn_text.set("Download")
 download_btn.grid(column=0, row=3, columnspan=3, pady=20)
-
-# Settings button
-settings_button = ctk.CTkButton(root, text='Settings',
-                                command=lambda: settings_button_click())
-settings_button.grid(column=0, row=4, columnspan=3)
 
 # Run the GUI main loop
 root.mainloop()
