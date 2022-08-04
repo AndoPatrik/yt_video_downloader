@@ -60,4 +60,3 @@ settings_button.grid(column=0, row=4, columnspan=3)
 
 # Run the GUI main loop
 root.mainloop()
-í
